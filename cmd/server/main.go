@@ -26,7 +26,7 @@ func main() {
 		Amount:  100,
 	})
 
-	bus.Submit(processor.Event{
+	bus.SubmitAndWait(processor.Event{
 		EventID:   "e-1",
 		Key:       "user-1",
 		Type:      string(cryptoledger.Deposit),
@@ -39,16 +39,13 @@ func main() {
 		Amount:  30,
 	})
 
-	bus.Submit(processor.Event{
+	bus.SubmitAndWait(processor.Event{
 		EventID:   "e-2",
 		Key:       "user-1",
 		Type:      string(cryptoledger.Withdrawal),
 		Payload:   withdrawPayload,
 		Timestamp: time.Now(),
 	})
-
-	// Wait for events to be processed
-	time.Sleep(100 * time.Millisecond)
 
 	fmt.Println("balance: ", store.GetBalance("user-1"))
 

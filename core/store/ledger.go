@@ -14,8 +14,8 @@ func NewLedgerStore() *LedgerStore {
 }
 
 func (s *LedgerStore) GetBalance(account string) float64 {
-	s.mu.Lock()
-	defer s.mu.Unlock()
+	s.mu.Lock() // Lock the mutex to ensure thread-safe access
+	defer s.mu.Unlock() // Unlock the mutex when the function returns, defer means it will be called at the end of the function
 	return s.balances[account]
 }
 

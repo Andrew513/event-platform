@@ -4,7 +4,7 @@ type EventType string
 
 const (
 	Deposit EventType = "DEPOSIT"
-	Withdrawal EventType = "WITHDRAWAL"
+	Withdraw EventType = "WITHDRAW"
 )
 
 type LedgerEvent struct {
